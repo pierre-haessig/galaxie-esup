@@ -123,6 +123,7 @@ html_template = '''<!DOCTYPE HTML>
     
     <p>Extraction du {date}</p>
     <p>{infos}</p>
+    <p>nombre de postes correspondants : {nb_res}</p>
 
     <table>
       <thead>
@@ -186,9 +187,14 @@ if __name__ == '__main__':
 
     infos = 'sections choisies : {}, corps : {}'.format(sections, corps)
 
+    nb_res = '{:d} + {:d} prépubliés'.format(
+              len(extracted_data['published']['rows']),
+              len(extracted_data['prepub']['rows']))
+
     html_out = html_template.format(header = unicode(header),
                                     table=table,
                                     infos=infos,
+                                    nb_res=nb_res,
                                     date=today.isoformat(),
                                     css=css)
 
